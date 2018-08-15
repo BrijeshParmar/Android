@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "175435134019",
+    "firebase_url": "https://fireaway-818ed.firebaseio.com",
+    "project_id": "fireaway-818ed",
+    "storage_bucket": "fireaway-818ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175435134019:android:989fdf8c614a09f2",
+        "android_client_info": {
+          "package_name": "com.ict.genesis.fireaway"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175435134019-l2phm1j1s46sh67reflhubj437afef5d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ict.genesis.fireaway",
+            "certificate_hash": "f4912ac90111c7801723e46a95ec28c737c8b605"
+          }
+        },
+        {
+          "client_id": "175435134019-9621g8h3j8opvdj8ncm6496274bhhobb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg3FV8WhI4rE9Ne3Bntt5Nn7aQuB8XRy4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175435134019-9621g8h3j8opvdj8ncm6496274bhhobb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "61367244955",
+    "firebase_url": "https://learningcloud-ae202.firebaseio.com",
+    "project_id": "learningcloud-ae202",
+    "storage_bucket": "learningcloud-ae202.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61367244955:android:2ea38f7fdcf99f2f",
+        "android_client_info": {
+          "package_name": "com.ict.genesis.cloudconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61367244955-ftr4htsqpopobulq3ob711o9o5v8h1ku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ict.genesis.cloudconnect",
+            "certificate_hash": "f4912ac90111c7801723e46a95ec28c737c8b605"
+          }
+        },
+        {
+          "client_id": "61367244955-od4tpslg15q45ji7lbk0npid7uh1eejl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC6Ym61bUiAM2Vb7v_CJG92290glTUMS8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61367244955-od4tpslg15q45ji7lbk0npid7uh1eejl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

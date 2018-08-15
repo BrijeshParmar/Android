@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CloudConnect</string>
+    <string name="title_activity_data_retrieve">DataRetrieve</string>
+</resources>

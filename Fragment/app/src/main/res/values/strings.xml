@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Fragment</string>
+    <string name="toptext">TopText</string>
+    <string name="bottomtext">BottomText</string>
+</resources>
