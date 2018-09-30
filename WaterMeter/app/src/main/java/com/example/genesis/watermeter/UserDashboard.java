@@ -41,13 +41,14 @@ import java.util.Locale;
 public class UserDashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static String emailid;
+    String month;
     FirebaseDatabase fdatabase;
     DatabaseReference mydb;
     Date d1;
     DataPoint dp;
-    TextView cost_disp,vol_disp;
+    TextView cost_disp,vol_disp,nav_email;
     LineGraphSeries<DataPoint> series;
+    GraphView graph;
     DateFormat format = new SimpleDateFormat("MMM-dd-yyyy",Locale.ENGLISH);
     SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
     @Override
@@ -55,13 +56,13 @@ public class UserDashboard extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_dashboard);
 
-        TextView nav_email =(TextView)findViewById(R.id.nav_display_id);
         cost_disp=(TextView)findViewById(R.id.cost_value);
         vol_disp=(TextView)findViewById(R.id.vol_value);
-        final GraphView graph = (GraphView) findViewById(R.id.graph);
+        graph = (GraphView) findViewById(R.id.graph);
         fdatabase=FirebaseDatabase.getInstance();
         mydb=fdatabase.getReference();
-        DatabaseReference child = mydb.child("Users").child("bparmar360").child("January");
+        month="January";
+        DatabaseReference child = mydb.child("Users").child("bparmar360").child(month);
         DatabaseReference total = mydb.child("Users").child("bparmar360");
         total.addValueEventListener(new ValueEventListener() {
             @Override
@@ -120,6 +121,8 @@ public class UserDashboard extends AppCompatActivity
                 graph.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
                 graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);// remove horizontal x labels and line
                 graph.getGridLabelRenderer().setVerticalLabelsVisible(true); // enables vertical zooming and scrolling
+                graph.setTitle("Water Consumption for : "+month);
+                graph.setTitleTextSize(50);
                 graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
                 graph.getGridLabelRenderer().setVerticalAxisTitle("Consumption in litre");
                 series.setOnDataPointTapListener(new OnDataPointTapListener() {
@@ -162,6 +165,9 @@ public class UserDashboard extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.nav_display_id);
+        navUsername.setText(getIntent().getStringExtra("E-mail"));
     }
 
     @Override
@@ -187,12 +193,8 @@ public class UserDashboard extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
+        month=item.getTitle().toString();
+        LoadAgain();
         return super.onOptionsItemSelected(item);
     }
 
@@ -219,5 +221,93 @@ public class UserDashboard extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void LoadAgain(){
+        DatabaseReference child = mydb.child("Users").child("bparmar360").child(month);
+        DatabaseReference total = mydb.child("Users").child("bparmar360");
+        total.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String cost;
+                String volume;
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+
+                    String str = ds.getKey();
+                    if(str.equals("Cost")){
+                        cost=ds.getValue().toString();
+                        cost_disp.setText(cost);
+
+                    }
+                    else if(str.equals("TotalVolume")){
+                        volume=ds.getValue().toString();
+                        vol_disp.setText(volume);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        child.addValueEventListener(new ValueEventListener() {
+            DataPoint[] data;
+            int npts;
+            int count_data=0;
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                npts=(int)dataSnapshot.getChildrenCount();
+                data = new DataPoint[npts];
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    String dkey = ds.getKey();
+                    long cvalue = (long)ds.getValue();
+
+                    try {
+                        d1 = format.parse(dkey);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //Log.d("dataMessagX",d1.toString());
+                    dp = new DataPoint(d1,cvalue);
+                    data[count_data]=dp;
+                    count_data++;
+                }
+                series = new LineGraphSeries<>(data);
+                graph.removeAllSeries();
+                graph.addSeries(series);
+
+                graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE);// It will remove the background grids
+
+                series.setDrawBackground(true);
+                graph.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);// remove horizontal x labels and line
+                graph.getGridLabelRenderer().setVerticalLabelsVisible(true); // enables vertical zooming and scrolling
+                graph.setTitle("Water Consumption for : "+month);
+                graph.setTitleTextSize(50);
+                graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
+                graph.getGridLabelRenderer().setVerticalAxisTitle("Consumption in litre");
+
+                series.setOnDataPointTapListener(new OnDataPointTapListener() {
+                    @Override
+                    public void onTap(Series series, DataPointInterface dataPoint) {
+                        Date d = new java.sql.Date((long) dataPoint.getX());
+                        SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-YYYY");
+                        String formatted = format1.format(d.getTime());
+                        Toast.makeText(getApplicationContext(), "Data: "+formatted+" \nWater Consumed: "+dataPoint.getY()+" ltr", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+        });
     }
 }
