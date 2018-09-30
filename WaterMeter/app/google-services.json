@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "410940296113",
+    "firebase_url": "https://iot-project-4a2ca.firebaseio.com",
+    "project_id": "iot-project-4a2ca",
+    "storage_bucket": "iot-project-4a2ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410940296113:android:79ab78b47172a0b7",
+        "android_client_info": {
+          "package_name": "com.example.genesis.watermeter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410940296113-vdr0j00ld27v155bqbom1bp4devae3gb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.genesis.watermeter",
+            "certificate_hash": "0d54ca35cdb7db50233eadea4a3d716126c79021"
+          }
+        },
+        {
+          "client_id": "410940296113-hr6g2u3hipo39nio4ar1uj3q0r1au50k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDta3JBDDC_lvIq3vfIWS0-FC2D8plXiXM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410940296113-hr6g2u3hipo39nio4ar1uj3q0r1au50k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410940296113:android:078bd16325ad4ec1",
+        "android_client_info": {
+          "package_name": "com.example.genesis.watermeterproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410940296113-5hcf39if8mc2mbbg9itj7j2lae0mk952.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.genesis.watermeterproject",
+            "certificate_hash": "0d54ca35cdb7db50233eadea4a3d716126c79021"
+          }
+        },
+        {
+          "client_id": "410940296113-hr6g2u3hipo39nio4ar1uj3q0r1au50k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDta3JBDDC_lvIq3vfIWS0-FC2D8plXiXM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410940296113-hr6g2u3hipo39nio4ar1uj3q0r1au50k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
